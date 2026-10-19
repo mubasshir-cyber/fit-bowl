@@ -22,16 +22,17 @@ export function SmoothScrollProvider({
 
     if (prefersReducedMotion) return;
 
-    // Instantiate Lenis smooth scroll engine
+    // Instantiate Lenis smooth scroll engine with high-performance easing
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth exponential ease-out
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.95,
-      touchMultiplier: 1.2,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.5,
       infinite: false,
+      autoResize: true,
     });
 
     // Bridge Lenis scroll events to GSAP ScrollTrigger
@@ -43,7 +44,21 @@ export function SmoothScrollProvider({
     };
 
     gsap.ticker.add(tickerCallback);
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(500, 33);
+
+    // Automated ResizeObserver to recalculate geometry when DOM height shifts
+    let resizeTimer: ReturnType<typeof setTimeout> | null = null;
+    const resizeObserver = new ResizeObserver(() => {
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        lenis.resize();
+        ScrollTrigger.refresh();
+      }, 100);
+    });
+
+    if (document.body) {
+      resizeObserver.observe(document.body);
+    }
 
     // Smooth anchor link click interception (#menu, #plans, #faqs, etc.)
     const handleAnchorClick = (e: MouseEvent) => {
@@ -58,7 +73,7 @@ export function SmoothScrollProvider({
         e.preventDefault();
         lenis.scrollTo(element as HTMLElement, {
           offset: -20,
-          duration: 1.3,
+          duration: 1.2,
           easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         });
       }
@@ -70,6 +85,8 @@ export function SmoothScrollProvider({
     (window as unknown as { lenis?: Lenis }).lenis = lenis;
 
     return () => {
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeObserver.disconnect();
       document.removeEventListener('click', handleAnchorClick);
       gsap.ticker.remove(tickerCallback);
       lenis.destroy();

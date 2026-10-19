@@ -60,12 +60,22 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-nunito), system-ui, -apple-system, sans-serif;
   min-height: 100vh;
   overflow-x: clip;
+}
+
+img {
+  content-visibility: auto;
 }
 
 h1, h2, h3, h4, h5, h6 {

@@ -348,6 +348,7 @@ export function PricingSection() {
                   alt="FitBowl weekly fresh meal bowl"
                   fill
                   sizes="(max-width: 1280px) 180px, 230px"
+                  loading="lazy"
                   className="object-cover"
                 />
               </div>
@@ -365,6 +366,7 @@ export function PricingSection() {
                 alt="FitBowl weekly fresh meal bowl"
                 fill
                 sizes="180px"
+                loading="lazy"
                 className="object-cover"
               />
             </div>

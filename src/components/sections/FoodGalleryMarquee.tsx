@@ -120,6 +120,7 @@ export function FoodGalleryMarquee() {
                     alt=""
                     fill
                     sizes="(max-width: 640px) 72vw, (max-width: 1024px) 38vw, 24vw"
+                    loading="lazy"
                     className="food-gallery-image"
                   />
                 </div>
