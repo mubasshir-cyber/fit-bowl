@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FFF7E8;
+  --foreground: #173F32;
+  --color-forest: #173F32;
+  --color-forest-dark: #0F2C23;
+  --color-orange: #F47738;
+  --color-orange-hover: #E06324;
+  --color-warm-cream: #FFF7E8;
+  --color-soft-leaf: #DCEBCF;
+  --color-soft-leaf-text: #1B5E20;
+  --color-border-subtle: #E3D8C4;
+  --color-text-main: #173F32;
+  --color-text-body: #334A40;
+  --color-text-muted: #63786F;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-forest: var(--color-forest);
+  --color-forest-dark: var(--color-forest-dark);
+  --color-orange: var(--color-orange);
+  --color-orange-hover: var(--color-orange-hover);
+  --color-cream: var(--color-warm-cream);
+  --color-leaf: var(--color-soft-leaf);
+  --color-leaf-dark: var(--color-soft-leaf-text);
+  --color-border-cream: var(--color-border-subtle);
+
+  --font-heading: var(--font-bricolage), system-ui, sans-serif;
+  --font-body: var(--font-nunito), system-ui, sans-serif;
+  --font-script: var(--font-caveat), cursive;
+
+  --breakpoint-xs: 390px;
+}
+
+.font-script {
+  font-family: var(--font-caveat), cursive;
+}
+
+/* Lenis Smooth Scrolling Core */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-nunito), system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-bricolage), system-ui, -apple-system, sans-serif;
+}
+
+/* Pricing Card Desktop Pointer Hover Interactions */
+@media (hover: hover) and (pointer: fine) {
+  .pricing-card-standard {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .pricing-card-standard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 32px -8px rgba(23, 63, 50, 0.14);
+    border-color: rgba(23, 63, 50, 0.3);
+  }
+
+  .pricing-card-regular {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .pricing-card-regular:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 44px -10px rgba(244, 119, 56, 0.38);
+    border-color: #E06324;
+  }
+
+  /* How It Works Step Icon Desktop Pointer Hover Interactions */
+  .how-step-icon {
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+  }
+  .how-step-icon:hover {
+    transform: translateY(-4px);
+    border-color: #F47738;
+    box-shadow: 0 14px 28px -6px rgba(244, 119, 56, 0.25);
+  }
+
+  /* Editorial Review Card Desktop Hover Interactions */
+  .editorial-review-card {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  .editorial-review-card:hover {
+    transform: translateY(-8px) rotate(0deg) !important;
+    border-color: #F47738 !important;
+    box-shadow: 0 28px 50px -12px rgba(23, 63, 50, 0.22);
+  }
+  .editorial-review-card:hover .editorial-food-img {
+    transform: scale(1.04);
+  }
+  .editorial-food-img {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pricing-card-standard,
+  .pricing-card-regular,
+  .how-step-icon,
+  .editorial-review-card,
+  .editorial-food-img {
+    transition: none !important;
+    transform: none !important;
+  }
+}

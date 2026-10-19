@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64" width="240" height="64" fill="none">
+  <!-- Bowl Icon Group -->
+  <g id="bowl-icon">
+    <!-- Steam / Sprout Leaves -->
+    <path d="M22 17C20 12 24 8 27 7C28 10 26 14 22 17Z" fill="#DCEBCF" />
+    <path d="M26 16C29 11 34 11 36 13C34 16 30 18 26 16Z" fill="#F47738" />
+    <!-- Chopsticks -->
+    <line x1="12" y1="21" x2="38" y2="12" stroke="#DCEBCF" stroke-width="2.2" stroke-linecap="round" />
+    <line x1="10" y1="16" x2="35" y2="23" stroke="#F47738" stroke-width="2.2" stroke-linecap="round" />
+    <!-- Bowl Body -->
+    <path d="M11 23H37C37 32 31 38 24 38C17 38 11 32 11 23Z" fill="#173F32" stroke="#FFF7E8" stroke-width="2.5" stroke-linejoin="round" />
+    <!-- Bowl Base Foot -->
+    <path d="M19 38H29C28.5 40.5 27 41.5 24 41.5C21 41.5 19.5 40.5 19 38Z" fill="#FFF7E8" />
+    <!-- Smile / Freshness Line inside Bowl -->
+    <path d="M18 29C21 32 27 32 30 29" stroke="#F47738" stroke-width="2" stroke-linecap="round" />
+  </g>
+
+  <!-- Wordmark 'fitbowl' -->
+  <text x="48" y="32" font-family="'Bricolage Grotesque', system-ui, -apple-system, sans-serif" font-size="26" font-weight="800" fill="#FFF7E8" letter-spacing="-0.5">fitbowl</text>
+
+  <!-- Tagline 'VEG & NON-VEG' -->
+  <text x="49" y="44" font-family="'Nunito', system-ui, -apple-system, sans-serif" font-size="7.5" font-weight="800" fill="#F47738" letter-spacing="2.2">VEG &amp; NON-VEG</text>
+
+  <!-- Extended Sub-tag for footer 'HEALTHY MEALS DELIVERED' -->
+  <text x="49" y="55" font-family="'Nunito', system-ui, -apple-system, sans-serif" font-size="7" font-weight="700" fill="#DCEBCF" letter-spacing="1.5">HEALTHY MEALS DELIVERED</text>
+</svg>
