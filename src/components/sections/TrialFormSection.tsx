@@ -8,7 +8,6 @@ import {
   Calendar,
   MapPin,
   User,
-  Sparkles,
   ArrowRight,
   Info,
   Loader2,
@@ -286,8 +285,7 @@ export function TrialFormSection() {
           ref={headerRef}
           className="flex flex-col items-center text-center space-y-3 mb-10 sm:mb-12 max-w-xl mx-auto"
         >
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#173F32]/8 text-[#173F32] text-xs font-black uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5 text-[#F47738]" />
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-[#173F32]/8 text-[#173F32] text-xs font-black uppercase tracking-wider">
             <span>FREE TRIAL</span>
           </div>
 
