@@ -27,7 +27,6 @@ export function HeroSection() {
   const tasteWordRef = useRef<HTMLSpanElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const primaryCtaRef = useRef<HTMLButtonElement>(null);
-  const secondaryCtaRef = useRef<HTMLButtonElement>(null);
   const trustRef = useRef<HTMLUListElement>(null);
   const imageWrapRef = useRef<HTMLDivElement>(null);
   const imageSrcRef = useRef<HTMLDivElement>(null);
@@ -47,7 +46,6 @@ export function HeroSection() {
         headlineLine2Ref.current,
         subtitleRef.current,
         primaryCtaRef.current,
-        secondaryCtaRef.current,
         imageWrapRef.current,
         badgeRef.current,
       ].filter(Boolean);
@@ -69,7 +67,6 @@ export function HeroSection() {
       gsap.set(tasteWordRef.current, { opacity: 0.4 });
       gsap.set(subtitleRef.current, { opacity: 0, y: 12 });
       gsap.set(primaryCtaRef.current, { opacity: 0, y: 10 });
-      gsap.set(secondaryCtaRef.current, { opacity: 0, y: 10 });
       gsap.set(trustItems, { opacity: 0, y: 10 });
       gsap.set(imageWrapRef.current, { opacity: 0, scale: 0.94, y: 20 });
       gsap.set(badgeRef.current, { opacity: 0, y: 12, scale: 0.96 });
@@ -110,9 +107,8 @@ export function HeroSection() {
       // 7. Subtitle
       tl.to(subtitleRef.current, { opacity: 1, y: 0, duration: 0.45 }, '-=0.35');
 
-      // 8. CTAs
+      // 8. Primary CTA
       tl.to(primaryCtaRef.current, { opacity: 1, y: 0, duration: 0.4 }, '-=0.25');
-      tl.to(secondaryCtaRef.current, { opacity: 1, y: 0, duration: 0.35 }, '-=0.22');
 
       // 9. Trust points stagger
       tl.to(trustItems, { opacity: 1, y: 0, duration: 0.38, stagger: 0.1 }, '-=0.15');
@@ -228,8 +224,8 @@ export function HeroSection() {
               Delicious, freshly prepared bowls delivered to your home or office.
             </p>
 
-            {/* CTAs */}
-            <div className="mt-7 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+            {/* Primary CTA */}
+            <div className="mt-7 sm:mt-8 flex items-center">
               <button
                 ref={primaryCtaRef}
                 type="button"
@@ -243,30 +239,6 @@ export function HeroSection() {
                   className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:translate-x-1"
                   aria-hidden="true"
                 />
-              </button>
-
-              <button
-                ref={secondaryCtaRef}
-                type="button"
-                onClick={() => scrollTo('#how-it-works')}
-                aria-label="Watch how FitBowl works"
-                className="group inline-flex items-center justify-center gap-3 px-5 sm:px-6 py-3.5 sm:py-4 rounded-full border border-[#D4C8B4] bg-white/70 hover:bg-white hover:border-[#173F32]/40 text-[#173F32] font-semibold text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#173F32] focus-visible:ring-offset-2 active:scale-[0.98] transition-all duration-200 cursor-pointer select-none"
-                style={{ opacity: 0 }}
-              >
-                {/* Animated play circle */}
-                <span className="relative w-8 h-8 rounded-full bg-[#173F32] flex items-center justify-center shrink-0 group-hover:bg-[#F47738] transition-colors duration-200 shadow-sm">
-                  <svg
-                    className="w-3 h-3 text-white fill-current ml-0.5"
-                    viewBox="0 0 12 14"
-                    aria-hidden="true"
-                  >
-                    <path d="M1 1.5L11 7L1 12.5V1.5Z" />
-                  </svg>
-                </span>
-                <span className="flex flex-col items-start leading-none gap-0.5">
-                  <span className="font-bold text-[#173F32]">Watch How It Works</span>
-                  <span className="text-[11px] text-[#63786F] font-medium">1 min overview</span>
-                </span>
               </button>
             </div>
 
