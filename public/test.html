@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { background: #FFF7E8; margin: 0; overflow: hidden; }
+    .bowl { position: absolute; top: 50%; left: 70%; width: 400px; height: 400px; transform: translate(-50%, -50%); border-radius: 50%; background: #ccc; }
+    .svg-container { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; }
+    text { font-family: sans-serif; font-size: 14px; fill: #173F32; font-weight: bold; letter-spacing: 2px; }
+  </style>
+</head>
+<body>
+  <div class="bowl" id="bowl"></div>
+  <svg class="svg-container" id="svg">
+    <path id="curve" fill="transparent" stroke="green" />
+    <text>
+      <textPath href="#curve" startOffset="0%">
+        FRESHLY PREPARED • FULL OF FLAVOUR • MADE FOR YOUR DAY • REAL INGREDIENTS • GOOD FOOD, GOOD MOOD • FRESH EVERY DAY • 
+      </textPath>
+    </text>
+  </svg>
+  <script>
+    function update() {
+      const bowl = document.getElementById('bowl');
+      const rect = bowl.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const r = rect.width / 2;
+      
+      const pathRadius = r + 60;
+      
+      const thetaStart = -150 * Math.PI / 180;
+      const thetaEnd = -30 * Math.PI / 180;
+      
+      const pxStart = cx + pathRadius * Math.cos(thetaStart);
+      const pyStart = cy + pathRadius * Math.sin(thetaStart);
+      
+      const pxEnd = cx + pathRadius * Math.cos(thetaEnd);
+      const pyEnd = cy + pathRadius * Math.sin(thetaEnd);
+      
+      const startY = cy + pathRadius * 0.4;
+      const p0x = -50;
+      const p0y = startY;
+      
+      const c1x = cx * 0.4;
+      const c1y = startY;
+      
+      const tangentDx = -Math.sin(thetaStart); // 0.5
+      const tangentDy = Math.cos(thetaStart);  // -0.866
+      
+      const L = cx * 0.3;
+      const c2x = pxStart - L * tangentDx;
+      const c2y = pyStart - L * tangentDy;
+      
+      const path = `M ${p0x} ${p0y} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${pxStart} ${pyStart} A ${pathRadius} ${pathRadius} 0 0 1 ${pxEnd} ${pyEnd}`;
+      document.getElementById('curve').setAttribute('d', path);
+    }
+    window.addEventListener('resize', update);
+    update();
+  </script>
+</body>
+</html>
