@@ -30,13 +30,20 @@ export function Navbar() {
 
   // Prevent background scroll when mobile drawer is open
   useEffect(() => {
+    const lenis = (window as unknown as { lenis?: { stop: () => void; start: () => void } }).lenis;
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      lenis?.stop();
     } else {
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      lenis?.start();
     }
     return () => {
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      lenis?.start();
     };
   }, [mobileMenuOpen]);
 
@@ -144,11 +151,12 @@ export function Navbar() {
           aria-hidden="true"
         >
           <div
-            className="fixed top-0 right-0 w-[85%] max-w-sm h-full bg-[#FFF7E8] shadow-2xl p-6 flex flex-col justify-between overflow-y-auto"
+            className="fixed top-0 right-0 w-[85%] max-w-sm h-full bg-[#FFF7E8] shadow-2xl p-6 flex flex-col justify-between overflow-y-auto overscroll-contain"
             onClick={(e) => e.stopPropagation()}
             role="dialog"
             aria-modal="true"
             aria-label="Mobile Navigation Menu"
+            data-lenis-prevent="true"
           >
             <div>
               {/* Drawer Header */}

@@ -32,8 +32,15 @@ export function BowlDetailsDialog({
       }
     };
 
-    const prevOverflow = document.body.style.overflow;
+    // Stop Lenis smooth scroll and lock body/html overflow
+    const lenis = (window as unknown as { lenis?: { stop: () => void; start: () => void } }).lenis;
+    lenis?.stop();
+
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevHtmlOverflow = document.documentElement.style.overflow;
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+
     window.addEventListener('keydown', handleKeyDown);
 
     // Auto-focus close button
@@ -42,7 +49,9 @@ export function BowlDetailsDialog({
     }, 50);
 
     return () => {
-      document.body.style.overflow = prevOverflow;
+      document.body.style.overflow = prevBodyOverflow;
+      document.documentElement.style.overflow = prevHtmlOverflow;
+      lenis?.start();
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, onClose]);
@@ -61,7 +70,8 @@ export function BowlDetailsDialog({
       role="dialog"
       aria-modal="true"
       aria-labelledby="dialog-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
+      data-lenis-prevent="true"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto overscroll-contain"
     >
       {/* Backdrop */}
       <div
@@ -73,7 +83,8 @@ export function BowlDetailsDialog({
       {/* Dialog Surface */}
       <div
         ref={dialogRef}
-        className="relative bg-white rounded-3xl sm:rounded-[28px] border border-[#E3D8C4] shadow-2xl w-full max-w-2xl overflow-hidden z-10 my-auto animate-in fade-in zoom-in-95 duration-200"
+        data-lenis-prevent="true"
+        className="relative bg-white rounded-3xl sm:rounded-[28px] border border-[#E3D8C4] shadow-2xl w-full max-w-2xl overflow-hidden z-10 my-auto animate-in fade-in zoom-in-95 duration-200 overscroll-contain"
       >
         {/* Close Button */}
         <button
