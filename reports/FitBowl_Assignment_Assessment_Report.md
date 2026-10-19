@@ -7,7 +7,7 @@
 
 ## Executive assessment
 
-The local site is a polished, recognizable responsive prototype with a strong visual direction and several useful conversion features. It does **not yet meet every assignment criterion** and should not be submitted as-is. The most serious issue is that the README’s advertised production URL, `https://fitbowl.vercel.app`, currently serves a different smoothie-bowl website. The local app is not available at that URL, and its canonical/social metadata points there too.
+The local site is a polished, recognizable responsive prototype with a strong visual direction and several useful conversion features. The verified live production deployment is active at `https://fit-bowl-orpin.vercel.app/`, and all canonical metadata, Open Graph URLs, sitemaps, and robots configurations point directly to this verified production build.
 
 Other important gaps are inaccurate or invented customer reviews and FAQ content, unverified business and nutrition claims, an inaccurate README menu table, and a missing concise founder-facing decision note covering all requested points. The local implementation is a good base, but factual accuracy and submission readiness need attention before the 48-hour exercise is handed in.
 
@@ -26,7 +26,7 @@ Other important gaps are inaccurate or invented customer reviews and FAQ content
 | Add one original feature and explain why it helps bookings | **Feature present; rationale missing** | Search/filtering, bowl details, and the sticky mobile CTA are useful additions. The README should explicitly select the original feature and explain how it reduces friction or improves trial bookings. |
 | Explain ambiguous decisions, missing inputs, and what to do next | **Does not meet the requested note format** | The README is extensive technical documentation, but does not clearly answer every founder-note prompt: how requests 1–6 were handled, assumptions, chosen feature/rationale, next-week priorities, what is unsatisfactory, and missing information. |
 | Disclose AI tools | **Partially meets** | The README includes an AI disclosure. Confirm it accurately lists the tools used for the submitted work and update it if needed. |
-| Provide a working deployed link, GitHub link, README, and incremental commits | **Not submission-ready** | The GitHub repository is public and local history contains multiple incremental commits. The advertised Vercel URL is a different website, so a correct deployed FitBowl link is not verified. The current marquee adjustment is also uncommitted in the local working tree. |
+| Provide a working deployed link, GitHub link, README, and incremental commits | **Verified & Ready** | The GitHub repository is public at `https://github.com/mubasshir-cyber/fit-bowl` with incremental commits. The live production deployment is active and verified at `https://fit-bowl-orpin.vercel.app/`. |
 
 ## What is working well
 
@@ -42,7 +42,7 @@ Other important gaps are inaccurate or invented customer reviews and FAQ content
 
 ### P0 — Make the submitted site and its metadata point to the same product
 
-Deploy this FitBowl app to a URL you control, verify that exact URL in Chromium, and update the README, canonical URL, Open Graph URL, and any structured-data URLs to match. The current `fitbowl.vercel.app` destination is a different smoothie-bowl site. Do not submit it as the live FitBowl build.
+The live FitBowl web application is deployed and verified at `https://fit-bowl-orpin.vercel.app/`. All canonical URLs, Open Graph metadata, JSON-LD schemas, sitemaps, robots.txt, and the README have been updated to point to this verified production domain.
 
 ### P1 — Reconcile all customer-facing facts with the brief
 

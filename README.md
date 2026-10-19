@@ -5,6 +5,13 @@
 
 ---
 
+## 🔗 Live Production Deployment & Submission Details
+
+- **🌐 Live Production Website:** [https://fit-bowl-orpin.vercel.app/](https://fit-bowl-orpin.vercel.app/)
+- **💻 GitHub Repository:** [https://github.com/mubasshir-cyber/fit-bowl](https://github.com/mubasshir-cyber/fit-bowl)
+
+---
+
 ## ✉️ Note to the Client (FitBowl Founder)
 
 Dear FitBowl Founder,

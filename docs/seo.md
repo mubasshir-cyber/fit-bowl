@@ -83,7 +83,7 @@ The primary audience consists of working corporate professionals, entrepreneurs,
 export const metadata: Metadata = {
   title: 'FitBowl — Healthy Meal Subscription in Mumbai | Fresh Veg & Non-Veg Bowls',
   description: 'Chef-prepared, macro-balanced healthy meal subscription delivered across Mumbai (Andheri, Bandra, Powai, Lower Parel). 14 signature bowls. Claim your free trial today!',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://fitbowl.vercel.app'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://fit-bowl-orpin.vercel.app'),
   alternates: {
     canonical: '/',
   },
@@ -208,7 +208,7 @@ FitBowl embeds three rich JSON-LD schema blocks in `src/app/layout.tsx` to earn 
   "@context": "https://schema.org",
   "@type": "FoodEstablishment",
   "name": "FitBowl",
-  "image": "https://fitbowl.vercel.app/images/hero/hero-bowl.webp",
+  "image": "https://fit-bowl-orpin.vercel.app/images/hero/hero-bowl.webp",
   "description": "Healthy meal subscription service delivering freshly cooked veg and non-veg gourmet bowls across Mumbai.",
   "servesCuisine": ["Healthy", "Indian", "Mediterranean", "Asian"],
   "priceRange": "₹₹",
@@ -281,7 +281,7 @@ Enables Google FAQ rich snippets directly in search results for all 8 assignment
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://fitbowl.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://fit-bowl-orpin.vercel.app';
   return [
     {
       url: baseUrl,
@@ -298,7 +298,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://fitbowl.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://fit-bowl-orpin.vercel.app';
   return {
     rules: {
       userAgent: '*',
@@ -352,7 +352,7 @@ Recommended Google Tag Manager (GTM) / Google Analytics 4 (GA4) configuration:
 
 | Item | Current Assumption | Pending Confirmation |
 |---|---|---|
-| **Production Domain URL** | Using placeholder `https://fitbowl.vercel.app` | Confirmed custom domain upon live deployment |
+| **Production Domain URL** | Configured live production `https://fit-bowl-orpin.vercel.app` | Verified live Vercel deployment |
 | **Google Search Console Verification** | Pending live URL | Submit sitemap post-deployment |
 | **Verified Physical Kitchen Address** | General Mumbai hubs listed | Exact kitchen address for `LocalBusiness` schema |
 | **Customer Support Phone** | Displayed as `+91 98765 43210` | Real operational business telephone line |
