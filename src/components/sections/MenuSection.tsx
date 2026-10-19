@@ -185,6 +185,9 @@ export function MenuSection() {
         ease: 'power3.out',
         overwrite: 'auto',
         clearProps: 'opacity,visibility,transform,transition,willChange',
+        onComplete: () => {
+          ScrollTrigger.refresh();
+        },
       }
     );
 
@@ -193,6 +196,19 @@ export function MenuSection() {
       cardsAnimationRef.current = null;
     };
   }, [activeFilter, isExpanded]);
+
+  // Synchronize ScrollTrigger coordinates and Lenis bounds whenever menu height changes
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (typeof window !== 'undefined') {
+        ScrollTrigger.refresh();
+        const lenis = (window as unknown as { lenis?: { resize: () => void } }).lenis;
+        lenis?.resize();
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [isExpanded, displayedBowls.length]);
 
   const handleOpenDetails = (bowl: BowlItem) => {
     setSelectedBowl(bowl);

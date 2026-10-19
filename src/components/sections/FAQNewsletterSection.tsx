@@ -468,15 +468,6 @@ export function FAQNewsletterSection() {
                   Have a specific diet or delivery question?
                 </span>
               </div>
-              <a
-                href="https://wa.me/919876543210?text=Hi%20FitBowl,%20I%20have%20a%20question%20about%20the%20meal%20plans"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 font-bold text-[#173F32] hover:text-[#F47738] transition-colors group cursor-pointer"
-              >
-                <span>Chat on WhatsApp</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </a>
             </div>
           </div>
         </div>

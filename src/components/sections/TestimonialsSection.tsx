@@ -20,7 +20,6 @@ export function TestimonialsSection() {
   const eyebrowRef = useRef<HTMLDivElement | null>(null);
   const headingRef = useRef<HTMLHeadingElement | null>(null);
   const subtextRef = useRef<HTMLParagraphElement | null>(null);
-  const galleryWrapperRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const mobileTrackRef = useRef<HTMLDivElement | null>(null);
 
@@ -32,8 +31,6 @@ export function TestimonialsSection() {
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)'
     ).matches;
-
-    const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
 
     if (prefersReducedMotion) {
       return;
@@ -80,71 +77,19 @@ export function TestimonialsSection() {
       if (desktopCards && desktopCards.length > 0) {
         headingTl.fromTo(
           desktopCards,
-          { opacity: 0, y: 28 },
+          { opacity: 0, y: 24 },
           {
             opacity: 1,
             y: 0,
             duration: 0.55,
-            stagger: 0.1,
+            stagger: 0.08,
             ease: 'power2.out',
             onComplete: () => {
-              gsap.set(desktopCards, { clearProps: 'y' });
+              gsap.set(desktopCards, { clearProps: 'transform' });
             },
           },
           '-=0.2'
         );
-      }
-
-      // Animation B — Desktop Horizontal Scroll Gallery with Viewport-Fit Pinning
-      if (isDesktop && trackRef.current && sectionRef.current) {
-        const getDistance = () => {
-          if (!trackRef.current) return 0;
-          const cards = trackRef.current.querySelectorAll('[data-editorial-card]');
-          if (!cards || cards.length === 0) return 0;
-          const lastCard = cards[cards.length - 1] as HTMLElement;
-          if (!lastCard) return 0;
-
-          const rightEdgeOfLastCard = lastCard.offsetLeft + lastCard.offsetWidth;
-          const rightMargin = Math.max(48, (window.innerWidth - 1280) / 2 + 32);
-          const targetViewportRight = window.innerWidth - rightMargin;
-
-          return Math.max(0, rightEdgeOfLastCard - targetViewportRight);
-        };
-
-        const distance = getDistance();
-
-        if (distance > 0) {
-          gsap.to(trackRef.current, {
-            x: () => -getDistance(),
-            ease: 'none',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              pin: true,
-              start: 'top top',
-              end: () => `+=${getDistance() + 100}`,
-              scrub: 1,
-              invalidateOnRefresh: true,
-              anticipatePin: 1,
-              fastScrollEnd: true,
-            },
-          });
-
-          // Animation C — Restrained parallax on food images during horizontal traversal
-          const foodImages = trackRef.current.querySelectorAll('.editorial-food-img');
-          if (foodImages.length > 0) {
-            gsap.to(foodImages, {
-              x: -20,
-              ease: 'none',
-              scrollTrigger: {
-                trigger: sectionRef.current,
-                start: 'top top',
-                end: () => `+=${getDistance() + 100}`,
-                scrub: 1.2,
-                fastScrollEnd: true,
-              },
-            });
-          }
-        }
       }
     }, sectionRef);
 
@@ -176,7 +121,7 @@ export function TestimonialsSection() {
       id="reviews"
       ref={sectionRef}
       aria-labelledby="reviews-heading"
-      className="relative overflow-hidden bg-transparent lg:h-screen lg:max-h-screen lg:flex lg:flex-col lg:justify-between pt-16 sm:pt-20 lg:pt-20 pb-12 sm:pb-16 lg:pb-6"
+      className="relative overflow-hidden bg-transparent py-14 sm:py-18 lg:py-20"
     >
       {/* Background ambient editorial depth glow */}
       <div
@@ -192,7 +137,7 @@ export function TestimonialsSection() {
       <Container size="wide" className="shrink-0">
         <div
           ref={headingWrapperRef}
-          className="flex flex-col items-start lg:items-center text-left lg:text-center space-y-2 mb-4 lg:mb-3"
+          className="flex flex-col items-start lg:items-center text-left lg:text-center space-y-2 mb-8 sm:mb-10 lg:mb-12"
         >
           <div ref={eyebrowRef} className="inline-flex items-center gap-1.5">
             <Badge variant="kicker" className="shadow-xs tracking-wider text-[11px] py-0.5 px-3">
@@ -224,15 +169,12 @@ export function TestimonialsSection() {
       </Container>
 
       {/* ============================================================== */}
-      {/* 1. Desktop Horizontal Scroll Gallery Track (Screens >= 1024px) */}
+      {/* 1. Desktop Testimonials Grid (Screens >= 1024px)              */}
       {/* ============================================================== */}
-      <div
-        ref={galleryWrapperRef}
-        className="hidden lg:flex flex-1 items-center relative w-full overflow-visible my-auto py-2"
-      >
+      <Container size="wide" className="hidden lg:block mb-10">
         <div
           ref={trackRef}
-          className="flex items-center gap-6 xl:gap-8 pl-[max(2rem,calc((100vw-1280px)/2+2rem))] pr-8 lg:pr-12 w-max will-change-transform"
+          className="grid grid-cols-4 gap-5 xl:gap-6 items-stretch"
         >
           {TESTIMONIALS_DATA.map((item) => {
             const isLong = item.quote.length > 140;
@@ -244,19 +186,18 @@ export function TestimonialsSection() {
                 style={{
                   backgroundColor: item.bgColor,
                   borderColor: item.borderColor,
-                  transform: `rotate(${item.rotationDeg}deg)`,
                 }}
-                className="editorial-review-card relative shrink-0 w-[400px] xl:w-[440px] h-[450px] xl:h-[480px] rounded-[28px] p-6 xl:p-7 border-2 shadow-xl flex flex-col justify-between overflow-hidden select-none"
+                className="editorial-review-card relative rounded-[24px] p-5 xl:p-6 border-2 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none min-h-[460px] xl:min-h-[480px]"
               >
                 {/* Decorative Subtle Background Watermark Quote */}
                 <Quote
-                  className="absolute -top-3 -right-3 w-28 h-28 text-[#173F32]/5 pointer-events-none rotate-12"
+                  className="absolute -top-3 -right-3 w-20 h-20 text-[#173F32]/5 pointer-events-none rotate-12"
                   aria-hidden="true"
                 />
 
                 {/* Top Card Meta Row: Locality Pill & 5 Golden Stars */}
-                <div className="flex items-center justify-between relative z-10 shrink-0">
-                  <span className="text-[10.5px] font-black uppercase tracking-wider px-3 py-0.5 rounded-full bg-[#173F32]/8 text-[#173F32] border border-[#173F32]/10">
+                <div className="flex items-center justify-between relative z-10 shrink-0 mb-3">
+                  <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#173F32]/8 text-[#173F32] border border-[#173F32]/10">
                     {item.locality}, Mumbai
                   </span>
 
@@ -275,26 +216,26 @@ export function TestimonialsSection() {
                 </div>
 
                 {/* Center Food Photo Frame with Dish Pill */}
-                <div className="relative w-full h-32 xl:h-36 rounded-xl overflow-hidden my-3 border border-black/8 shadow-inner bg-black/5 shrink-0">
+                <div className="relative w-full h-32 xl:h-36 rounded-xl overflow-hidden mb-3.5 border border-black/8 shadow-inner bg-black/5 shrink-0">
                   <Image
                     src={item.dishImage || '/images/bowls/korean-chicken-bowl.jpg'}
                     alt={`${item.dishName || 'FitBowl'} ordered by ${item.name}`}
                     fill
-                    sizes="(max-width: 1440px) 400px, 440px"
-                    className="editorial-food-img object-cover will-change-transform"
+                    sizes="(min-width: 1280px) 280px, 240px"
+                    className="object-cover transition-transform duration-500 hover:scale-105"
                   />
-                  <div className="absolute bottom-2 left-2 bg-[#173F32]/90 backdrop-blur-md text-[#FFF7E8] text-[11px] font-bold px-2.5 py-0.5 rounded-full shadow-sm">
+                  <div className="absolute bottom-2 left-2 bg-[#173F32]/90 backdrop-blur-md text-[#FFF7E8] text-[10.5px] font-bold px-2.5 py-0.5 rounded-full shadow-sm">
                     {item.dishName || 'FitBowl Special'}
                   </div>
                 </div>
 
                 {/* Exact Customer Testimonial Text */}
-                <div className="relative z-10 flex-1 flex flex-col justify-center overflow-y-auto pr-1 no-scrollbar my-1">
+                <div className="relative z-10 flex-1 flex flex-col justify-start my-1 overflow-y-auto pr-1 no-scrollbar max-h-[140px]">
                   <p
                     className={`${
                       isLong
-                        ? 'text-xs xl:text-[13px] leading-relaxed font-medium text-[#253D33]'
-                        : 'text-base xl:text-lg font-bold font-bricolage text-[#173F32] leading-snug tracking-tight'
+                        ? 'text-xs xl:text-[12.5px] leading-relaxed font-medium text-[#253D33]'
+                        : 'text-sm xl:text-[15px] font-bold font-bricolage text-[#173F32] leading-snug tracking-tight'
                     }`}
                   >
                     &ldquo;{item.quote}&rdquo;
@@ -302,24 +243,24 @@ export function TestimonialsSection() {
                 </div>
 
                 {/* Card Bottom: Customer Profile & Verified Badge */}
-                <div className="flex items-center justify-between pt-3 mt-auto border-t border-[#173F32]/15 relative z-10 shrink-0">
-                  <div className="flex items-center gap-2.5">
+                <div className="flex items-center justify-between pt-3 mt-3 border-t border-[#173F32]/15 relative z-10 shrink-0">
+                  <div className="flex items-center gap-2">
                     {/* Customer Monogram Avatar */}
-                    <div className="w-8 h-8 rounded-full bg-[#173F32] text-[#FFF7E8] font-black text-xs flex items-center justify-center shadow-xs">
+                    <div className="w-7 h-7 rounded-full bg-[#173F32] text-[#FFF7E8] font-black text-xs flex items-center justify-center shadow-xs">
                       {item.initials}
                     </div>
                     <div>
-                      <h3 className="text-xs xl:text-sm font-black text-[#173F32] font-bricolage leading-tight">
+                      <h3 className="text-xs font-black text-[#173F32] font-bricolage leading-tight">
                         {item.name}, {item.age}
                       </h3>
-                      <p className="text-[11px] text-[#556D63] font-semibold">
+                      <p className="text-[10px] text-[#556D63] font-semibold">
                         {item.locality} Hub
                       </p>
                     </div>
                   </div>
 
-                  <div className="inline-flex items-center gap-1 text-[10px] font-extrabold text-[#1B5E20] bg-[#E8F5E9] px-2 py-0.5 rounded-full border border-[#C8E6C9]">
-                    <CheckCircle2 className="w-3 h-3 text-[#2E7D32]" />
+                  <div className="inline-flex items-center gap-1 text-[9.5px] font-extrabold text-[#1B5E20] bg-[#E8F5E9] px-2 py-0.5 rounded-full border border-[#C8E6C9]">
+                    <CheckCircle2 className="w-2.5 h-2.5 text-[#2E7D32]" />
                     <span>Verified</span>
                   </div>
                 </div>
@@ -327,7 +268,7 @@ export function TestimonialsSection() {
             );
           })}
         </div>
-      </div>
+      </Container>
 
       {/* ============================================================== */}
       {/* 2. Mobile & Tablet Swipeable Touch Gallery (< 1024px)          */}
