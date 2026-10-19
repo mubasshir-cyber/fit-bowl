@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <!-- Rounded brand container with subtle border -->
+  <rect width="64" height="64" rx="16" fill="#173F32" />
+  <rect x="1" y="1" width="62" height="62" rx="15" stroke="#F47738" stroke-width="1.8" stroke-opacity="0.35" fill="none" />
+
+  <!-- Steam / Herb Leaves -->
+  <!-- Left Sprout (Fresh Mint Green) -->
+  <path d="M28 17 C25 10 31 5 36 4 C38 9 35 14 28 17 Z" fill="#DCEBCF" />
+  <!-- Right Sprout (FitBowl Orange) -->
+  <path d="M33 16 C38 10 45 10 47 13 C45 18 39 19 33 16 Z" fill="#F47738" />
+
+  <!-- Crossed Chopsticks -->
+  <line x1="15" y1="23" x2="49" y2="12" stroke="#DCEBCF" stroke-width="2.6" stroke-linecap="round" />
+  <line x1="12" y1="16" x2="45" y2="25" stroke="#F47738" stroke-width="2.6" stroke-linecap="round" />
+
+  <!-- Bowl Body in Warm Cream with Orange Stroke -->
+  <path d="M14 25 H50 C50 38 42 47 32 47 C22 47 14 38 14 25 Z" fill="#FFF7E8" stroke="#F47738" stroke-width="2.2" stroke-linejoin="round" />
+
+  <!-- Bowl Base Foot -->
+  <path d="M24 47 H40 C39 50.5 37 52 32 52 C27 52 25 50.5 24 47 Z" fill="#F47738" />
+
+  <!-- Happy Freshness Smile inside Bowl (Forest Green for contrast) -->
+  <path d="M23 34 C27 39 37 39 41 34" stroke="#173F32" stroke-width="2.6" stroke-linecap="round" fill="none" />
+</svg>

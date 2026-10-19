@@ -68,6 +68,17 @@ export const metadata: Metadata = {
       "Chef-crafted, macro-balanced healthy meal subscription delivered across Mumbai. 14 signature bowls. Claim your free trial today!",
     images: ["/images/hero/hero-bowl.jpg"],
   },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    shortcut: "/icon.svg",
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({
