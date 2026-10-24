@@ -292,12 +292,17 @@ export function TestimonialsSection() {
                 </div>
 
                 {/* Exact Customer Testimonial Text */}
-                <div className="relative z-10 flex-1 flex flex-col justify-center overflow-y-auto pr-1 no-scrollbar my-1">
+                <div
+                  className={`relative z-10 flex-1 flex flex-col ${
+                    isLong ? 'justify-start pt-1' : 'justify-center'
+                  } overflow-y-auto pr-1 no-scrollbar my-1`}
+                >
                   <p
-                    className={`${isLong
-                        ? 'text-xs xl:text-[13px] leading-relaxed font-medium text-[#253D33]'
+                    className={`${
+                      isLong
+                        ? 'text-xs xl:text-[13px] leading-relaxed font-semibold text-[#173F32]'
                         : 'text-base xl:text-lg font-bold font-bricolage text-[#173F32] leading-snug tracking-tight'
-                      }`}
+                    }`}
                   >
                     &ldquo;{item.quote}&rdquo;
                   </p>
@@ -387,8 +392,8 @@ export function TestimonialsSection() {
                 <div className="flex-1 my-2">
                   <p
                     className={`${isLong
-                        ? 'text-xs sm:text-[13px] leading-relaxed font-medium text-[#253D33]'
-                        : 'text-base sm:text-lg font-bold font-bricolage text-[#173F32] leading-snug tracking-tight'
+                      ? 'text-xs sm:text-[13px] leading-relaxed font-medium text-[#253D33]'
+                      : 'text-base sm:text-lg font-bold font-bricolage text-[#173F32] leading-snug tracking-tight'
                       }`}
                   >
                     &ldquo;{item.quote}&rdquo;
@@ -438,8 +443,8 @@ export function TestimonialsSection() {
               <span
                 key={dotIdx}
                 className={`h-2 rounded-full transition-all duration-300 ${dotIdx === activeMobileIndex
-                    ? 'w-6 bg-[#F47738]'
-                    : 'w-2 bg-[#173F32]/20'
+                  ? 'w-6 bg-[#F47738]'
+                  : 'w-2 bg-[#173F32]/20'
                   }`}
               />
             ))}

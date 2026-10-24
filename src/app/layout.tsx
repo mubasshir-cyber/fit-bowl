@@ -8,21 +8,18 @@ const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
   subsets: ["latin"],
   display: "swap",
-  weight: ["600", "700", "800"],
 });
 
 const nunito = Nunito({
   variable: "--font-nunito",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700"],
 });
 
 const caveat = Caveat({
   variable: "--font-caveat",
   subsets: ["latin"],
   display: "swap",
-  weight: ["500", "600", "700"],
 });
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://fit-bowl-orpin.vercel.app";
